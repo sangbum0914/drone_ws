@@ -11,8 +11,8 @@
 키 매핑:
     T : arm + offboard 진입 (이륙 준비)
     W/S : 전진/후진        A/D : 좌/우 (body)
-    R/F : 상승/하강        Q/E : yaw 좌/우
-    Space : 정지(hover)     L : 착륙(AUTO.LAND)
+    R/F : 상승/하강        Q/E : yaw rate 증감(누를 때마다 ±0.2, 최대 ±2.0)
+    Space : 정지(hover, yaw 포함)  L : 착륙(AUTO.LAND)
     +/- : 속도 스케일 증감
     Ctrl-C : 종료
 """
@@ -141,9 +141,9 @@ class KeyboardTeleop(Node):
         elif k == "f":
             self.vz = -v
         elif k == "q":
-            self.yaw_rate = -0.8
+            self.yaw_rate = max(-2.0, self.yaw_rate - 0.2)  # 좌 yaw 증가(누를 때마다)
         elif k == "e":
-            self.yaw_rate = 0.8
+            self.yaw_rate = min(2.0, self.yaw_rate + 0.2)   # 우 yaw 증가(누를 때마다)
         elif k == " ":
             self.vx = self.vy = self.vz = self.yaw_rate = 0.0
         elif k == "+":
