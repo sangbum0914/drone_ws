@@ -6,7 +6,7 @@
 #  - PX4 pxh 콘솔이 escape 코드를 폭주시킴 → 출력은 /dev/null 로 폐기.
 #  - /fmu 토픽 확인 시 px4_msgs(ros2_ws) 소싱 필수 (verify_stack.sh 사용).
 #  - 반복 재기동 시 stale 프로세스 정리 후 진행.
-set -u
+# set -u 금지: ROS setup.bash 가 unbound 변수를 참조함
 source /home/sangbum/drone_ws/bringup/env.sh
 export DISPLAY="${DISPLAY:-:0}"
 export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/1000}"
