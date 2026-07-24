@@ -38,8 +38,15 @@ setsid MicroXRCEAgent udp4 -p 8888 > "$BRINGUP/xrce_agent.log" 2>&1 &
 sleep 2
 
 echo "[4/4] airsim_node 기동..."
+# enable_object_transforms_list:=False → object_transforms의 null-char FastDDS 크래시(및 odom_local 동반 정지) 회피
+# publish_clock:=True → /clock 발행 (use_sim_time 사용 가능)
 setsid ros2 launch airsim_ros_pkgs airsim_node.launch.py output:=screen \
+    enable_object_transforms_list:=False publish_clock:=True \
     > "$BRINGUP/airsim_node.log" 2>&1 &
 sleep 5
+
+echo "[5/5] GT publisher 기동 (전용 RPC, airsim_node odom 루프 우회)..."
+setsid python3 "$BRINGUP/gt_publisher.py" > "$BRINGUP/gt_publisher.log" 2>&1 &
+sleep 3
 
 echo "완료. 검증: bash $BRINGUP/verify_stack.sh"

@@ -9,7 +9,7 @@
     imu_topic: "/airsim_node/Drone1/imu/Imu"
     gnss_topic: "/airsim_node/Drone1/gps/Gps"
     camera_topic: "/airsim_node/Drone1/front_center_Scene/image"
-    gt_topic: "/airsim_node/Drone1/odom_local"    # GT pose 소스
+    gt_topic: "/drone/gt/pose"    # GT pose 소스
     odom_topic: "/estimator/odom"
     publish_rate_hz: 50.0
     odom_frame: "map"

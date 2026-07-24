@@ -1,0 +1,37 @@
+{
+  "SeeDocsAt": "https://cosys-lab.github.io/Cosys-AirSim/settings/",
+  "SettingsVersion": 2.0,
+  "SimMode": "Multirotor",
+  "ClockType": "SteppableClock",
+  "Vehicles": {
+    "Drone1": {
+      "VehicleType": "PX4Multirotor",
+      "UseSerial": false,
+      "UseTcp": true,
+      "TcpPort": 4560,
+      "LockStep": true,
+      "ControlIp": "127.0.0.1",
+      "ControlPortLocal": 14540,
+      "ControlPortRemote": 14580,
+      "LocalHostIp": "127.0.0.1",
+      "Sensors": {
+        "Imu": {
+          "SensorType": 2,
+          "Enabled": true
+        },
+        "Gps": {
+          "SensorType": 3,
+          "Enabled": true
+        },
+        "Magnetometer": {
+          "SensorType": 4,
+          "Enabled": true
+        },
+        "Barometer": {
+          "SensorType": 1,
+          "Enabled": true
+        }
+      }
+    }
+  }
+}

@@ -12,3 +12,4 @@ export PX4_DIR=/home/sangbum/drone_ws/external/PX4-Autopilot
 export AIRSIM_DIR=/home/sangbum/drone_ws/external/Cosys-AirSim
 export BLOCKS_UPROJECT="$AIRSIM_DIR/Unreal/Environments/Blocks/Blocks.uproject"
 export BRINGUP=/home/sangbum/drone_ws/bringup
+export PYTHONPATH="/home/sangbum/drone_ws/external/Cosys-AirSim/PythonClient:$PYTHONPATH"
