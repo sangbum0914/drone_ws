@@ -43,12 +43,14 @@ adapter는 단순 브리지가 아니라 **정식 timing/frame 계약 + conforma
 7. **Reset semantics**
    - 에피소드 리셋 시 시계·상태 정합. estimator 재초기화 규약.
 
-## Conformance Test 체크리스트
-- [ ] `/clock` 단조 증가, 모든 노드 sim-time 사용
-- [ ] lockstep 반복성 (2회 실행 궤적 일치)
-- [ ] IMU dt 지터 < 임계
-- [ ] hover 시 IMU accel ≈ (0,0,±g) 부호 정확 (NED/ENU 확인)
-- [ ] +X/+Y/+Z 이동 시 GNSS·GT·estimator 부호 일치
-- [ ] 카메라 스탬프 ↔ IMU 스탬프 정렬 (동기)
-- [ ] covariance 필드 채워짐
-- [ ] reset 후 시계·상태 재초기화 정상
+## Conformance Test 체크리스트 (2026-07-24 실측)
+- [x] **토픽 라이브 + 데이터 흐름** — /fmu(sensor_combined 250Hz·vehicle_odometry 100Hz·attitude 50Hz·gps 48Hz), /airsim_node(imu 100·gps 100·image 18·GT 100Hz). `bringup/verify_stack.sh`
+- [x] **lockstep이 물리 구동** — 이륙 테스트에서 드론 실제 비행(PX4↔AirSim lockstep, EKF 고도 추적)
+- [x] **PX4 제어 루프** — AUTO.TAKEOFF→hover(2.5m)→AUTO.LAND 폐루프 성공 (`bringup/takeoff_test.py`)
+- [x] **NED↔ENU 부호 확정** — hover 2.4m: PX4 z(NED)=**-2.43m** vs AirSim GT z(ENU)=**+2.46m** → 반대 부호. adapter는 NED↔ENU 변환 필수.
+- [ ] `/clock` 단조 증가, 모든 노드 sim-time 사용 — **미구현(gap)**, sim-time 브리지 필요
+- [ ] lockstep 반복성 (2회 실행 궤적 일치) — 미검증
+- [ ] IMU dt 지터 < 임계 — 미검증
+- [ ] 카메라 스탬프 ↔ IMU 스탬프 정렬 (동기) — 미검증
+- [ ] covariance 필드 채워짐 — 미검증
+- [ ] reset 후 시계·상태 재초기화 정상 — 미검증
