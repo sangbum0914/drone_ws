@@ -8,7 +8,7 @@
     # 표준 입력 토픽 (AirSim ROS2 wrapper 기준 예시 — 실측 후 조정)
     imu_topic: "/airsim_node/Drone1/imu/Imu"
     gnss_topic: "/airsim_node/Drone1/gps/Gps"
-    camera_topic: "/airsim_node/Drone1/front_center/Scene"
+    camera_topic: "/airsim_node/Drone1/front_center_Scene/image"
     gt_topic: "/airsim_node/Drone1/odom_local"    # GT pose 소스
     odom_topic: "/estimator/odom"
     publish_rate_hz: 50.0
