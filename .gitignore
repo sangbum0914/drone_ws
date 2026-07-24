@@ -1,0 +1,31 @@
+# 대용량 외부 소스 (별도 관리)
+external/
+# 빌드 산출물
+build/
+install/
+log/
+**/build/
+**/__pycache__/
+*.pyc
+# rosbag / 데이터
+data/
+bags/
+*.db3
+# AirSim/UE 산출물
+Saved/
+Intermediate/
+DerivedDataCache/
+
+# 로그
+*.log
+bringup/*.log
+# ROS2 colcon
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+# UE 산출물 (혹시 environments가 external 밖이면)
+**/Intermediate/
+**/Saved/
+**/DerivedDataCache/
+vectornav_driver/
+ros2_ws/src/px4_msgs/

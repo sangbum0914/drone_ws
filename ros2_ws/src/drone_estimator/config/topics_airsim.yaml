@@ -1,0 +1,16 @@
+# AirSim 백엔드용 토픽 매핑 (adapter 계약).
+# 실제 AirSim ROS2 wrapper / PX4-DDS 토픽명에 맞춰 remap 값을 채운다.
+# 원칙: IMU/GNSS = PX4(DDS) 또는 AirSim, 카메라 = AirSim(photorealistic).
+/**:
+  ros__parameters:
+    # 자작 estimator 로 교체 (예: "my_pkg.my_estimator:MyEstimator")
+    estimator_class: "drone_estimator.dead_reckoning_stub:DeadReckoningStub"
+    # 표준 입력 토픽 (AirSim ROS2 wrapper 기준 예시 — 실측 후 조정)
+    imu_topic: "/airsim_node/Drone1/imu/Imu"
+    gnss_topic: "/airsim_node/Drone1/gps/Gps"
+    camera_topic: "/airsim_node/Drone1/front_center/Scene"
+    gt_topic: "/airsim_node/Drone1/odom_local"    # GT pose 소스
+    odom_topic: "/estimator/odom"
+    publish_rate_hz: 50.0
+    odom_frame: "map"
+    child_frame: "base_link"
