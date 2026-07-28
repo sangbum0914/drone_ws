@@ -7,7 +7,7 @@ from PIL import Image as PImage
 class Grab(Node):
     def __init__(self, out):
         super().__init__("grab"); self.out=out; self.done=False
-        self.create_subscription(Image, "/airsim_node/Drone1/front_center_Scene/image",
+        self.create_subscription(Image, (sys.argv[2] if len(sys.argv)>2 else "/airsim_node/Drone1/front_center_Scene/image"),
                                  self.cb, QoSPresetProfiles.SENSOR_DATA.value)
     def cb(self, m):
         if self.done: return

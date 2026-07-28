@@ -15,6 +15,7 @@ echo "[0/4] 기존 프로세스 정리..."
 for n in px4 MicroXRCEAgent UnrealEditor airsim_node; do
   p=$(pgrep -x "$n"); [ -n "$p" ] && kill -9 $p 2>/dev/null
 done
+pkill -f gt_publisher.py 2>/dev/null   # 전용 GT 노드 정리(스크립트 cmdline엔 없어 안전)
 sleep 3
 
 echo "[1/4] AirSim Blocks 실행 (데스크톱 창)..."
